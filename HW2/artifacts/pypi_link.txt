@@ -1,0 +1,1 @@
+https://pypi.org/project/malodetz-latex-utils/0.1/
