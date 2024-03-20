@@ -11,7 +11,8 @@ class Matrix:
         if self.shape() != other.shape():
             raise ValueError("Matrices have different shape")
         result = [
-            [self.matrix[i][j] + other.matrix[i][j] for j in range(self.m)] for i in range(self.n)
+            [self.matrix[i][j] + other.matrix[i][j] for j in range(self.m)]
+            for i in range(self.n)
         ]
         return Matrix(result)
 
@@ -19,7 +20,8 @@ class Matrix:
         if self.shape() != other.shape():
             raise ValueError("Matrices have different shape")
         result = [
-            [self.matrix[i][j] * other.matrix[i][j] for j in range(self.m)] for i in range(self.n)
+            [self.matrix[i][j] * other.matrix[i][j] for j in range(self.m)]
+            for i in range(self.n)
         ]
         return Matrix(result)
 
@@ -30,10 +32,7 @@ class Matrix:
             )
         result = [
             [
-                sum(
-                    self.matrix[i][k] * other.matrix[k][j]
-                    for k in range(other.n)
-                )
+                sum(self.matrix[i][k] * other.matrix[k][j] for k in range(other.n))
                 for j in range(other.m)
             ]
             for i in range(self.n)

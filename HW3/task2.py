@@ -19,17 +19,23 @@ class ToStringMixin:
 
 class FileMixin:
     def write_to_file(self, filename):
-        with open(filename, 'w') as f:
+        with open(filename, "w") as f:
             print(self.__str__(), file=f)
 
 
-class Matrix(GetterMixin, SetterMixin, ToStringMixin, FileMixin, np.lib.mixins.NDArrayOperatorsMixin):
+class Matrix(
+    GetterMixin,
+    SetterMixin,
+    ToStringMixin,
+    FileMixin,
+    np.lib.mixins.NDArrayOperatorsMixin,
+):
 
     def __init__(self, matrix):
         self._matrix = np.array(matrix)
 
     def __array_ufunc__(self, ufunc, method, *inputs, **kwargs):
-        out = kwargs.get('out', ())
+        out = kwargs.get("out", ())
         new_inputs = []
         for x in out + inputs:
             if isinstance(x, Matrix):
@@ -37,11 +43,11 @@ class Matrix(GetterMixin, SetterMixin, ToStringMixin, FileMixin, np.lib.mixins.N
             else:
                 new_inputs.append(x)
         if out:
-            kwargs['out'] = tuple(*inputs)
+            kwargs["out"] = tuple(*inputs)
         result = getattr(ufunc, method)(*new_inputs, **kwargs)
         if isinstance(result, tuple):
             return tuple(type(self)(res) for res in result)
-        if method == 'at':
+        if method == "at":
             return None
         return type(self)(result)
 

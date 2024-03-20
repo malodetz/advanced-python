@@ -18,7 +18,9 @@ class HashableMatrix(HashMixin, Matrix):
     def __matmul__(self, other):
         pair_hash = (self.__hash__(), other.__hash__())
         if pair_hash not in HashableMatrix._cache:
-            HashableMatrix._cache[pair_hash] = HashableMatrix(super().__matmul__(other).matrix)
+            HashableMatrix._cache[pair_hash] = HashableMatrix(
+                super().__matmul__(other).matrix
+            )
         return HashableMatrix._cache[pair_hash]
 
 
