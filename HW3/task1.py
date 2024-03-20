@@ -53,8 +53,8 @@ if __name__ == "__main__":
     matrix1 = Matrix(np.random.randint(0, 10, (10, 10)))
     matrix2 = Matrix(np.random.randint(0, 10, (10, 10)))
     matrix_add = matrix1 + matrix2
-    matrix_add.write_to_file("artifacts/3.2/matrix+.txt")
+    matrix_add.write_to_file("artifacts/3.1/matrix+.txt")
     matrix_mul = matrix1 * matrix2
-    matrix_mul.write_to_file("artifacts/3.2/matrix*.txt")
+    matrix_mul.write_to_file("artifacts/3.1/matrix*.txt")
     matrix_matmul = matrix1 @ matrix2
-    matrix_matmul.write_to_file("artifacts/3.2/matrix@.txt")
+    matrix_matmul.write_to_file("artifacts/3.1/matrix@.txt")
