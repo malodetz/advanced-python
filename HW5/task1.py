@@ -1,4 +1,5 @@
 import aiohttp
+import aiofiles
 import asyncio
 import os
 
@@ -6,8 +7,8 @@ import os
 async def download_image(session, filename):
     async with session.get(url="https://source.unsplash.com/random") as response:
         if response.status == 200:
-            with open(filename, "wb") as f:
-                f.write(await response.content.read())
+            async with aiofiles.open(filename, "wb") as f:
+                await f.write(await response.content.read())
             print("Downloaded:", filename)
         else:
             print("Failed to download:", filename)
